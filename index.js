@@ -100,7 +100,24 @@ const linkedList = () => {
     }
 
     const shift = () => {
-
+        if (size() === 1) {
+            let firstNode = head();
+            headNode = null;
+            tailNode = null;
+            linkedListSize = 0;
+            return firstNode;
+        }
+        if (size() > 0) {
+            let firstNode = head();
+            let secondNode = firstNode.getNextNode();
+            headNode = secondNode();
+            if (size() === 2) {
+                tailNode = secondNode();
+            }
+            firstNode.setNextNode(null);
+            linkedListSize--;
+            return firstNode;
+        }
     }
 
     const contains = (value) => {
