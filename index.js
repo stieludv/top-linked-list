@@ -97,7 +97,7 @@ const linkedList = () => {
         let nextNode = head();
         for (let i = 0; i < size(); i++) {
             if (value === nextNode.getNodeValue()) {
-                return nextNode;
+                return [i, nextNode];
                 break;
             }
             nextNode = nextNode.getNextNode();
@@ -165,4 +165,4 @@ console.log(myLinkedList.head().getNodeValue(), myLinkedList.head().getNextNode(
 
 console.log(myLinkedList.contains("test5"), myLinkedList.contains("test0"), myLinkedList.contains("test4"), myLinkedList.contains("tessttt"));
 
-console.log(myLinkedList.find("test3").getNodeValue(), myLinkedList.find(983));
+console.log(myLinkedList.find("test3"), myLinkedList.find(983));
