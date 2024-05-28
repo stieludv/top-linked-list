@@ -74,11 +74,33 @@ const linkedList = () => {
     }
 
     const at = (index) => {
-        
+        if (index > size - 1 || index < 0) return false;
+        let nextNode = head();
+        for (let i = 1; i <= index; i++) {
+            nextNode = nextNode.getNextNode();
+        }
+        return nextNode;
     }
 
     const pop = () => {
-        
+        if (size() === 1) {
+            let lastNode = head();
+            headNode = null;
+            tailNode = null;
+            linkedListSize = 0;
+            return lastNode;
+        }
+        if (size() > 1) {
+            let nextLastNode = at(size() - 2);
+            let lastNode = nextLastNode.getNextNode();
+            nextLastNode.setNextNode(null);
+            linkedListSize--;
+            return lastNode;
+        }
+    }
+
+    const shift = () => {
+
     }
 
     const contains = (value) => {
@@ -166,3 +188,8 @@ console.log(myLinkedList.head().getNodeValue(), myLinkedList.head().getNextNode(
 console.log(myLinkedList.contains("test5"), myLinkedList.contains("test0"), myLinkedList.contains("test4"), myLinkedList.contains("tessttt"));
 
 console.log(myLinkedList.find("test3"), myLinkedList.find(983));
+
+console.log(myLinkedList.at(0).getNodeValue(), myLinkedList.at(2).getNodeValue());
+
+console.log(myLinkedList.pop().getNodeValue());
+console.log(myLinkedList.toString());
