@@ -82,7 +82,15 @@ const linkedList = () => {
     }
 
     const contains = (value) => {
-        
+        let nextNode = head();
+        for (let i = 0; i < size(); i++) {
+            if (value === nextNode.getNodeValue()) {
+                return true;
+                break;
+            }
+            nextNode = nextNode.getNextNode()
+        }
+        return false;
     }
 
     const find = (value) => {
@@ -135,11 +143,16 @@ const linkedList = () => {
 
 const myLinkedList = linkedList();
 
+myLinkedList.prepend("test0");
 myLinkedList.append("test");
 myLinkedList.append("test2");
 myLinkedList.prepend("test3");
+myLinkedList.prepend("test4");
+myLinkedList.append("test5");
 console.log(myLinkedList);
 console.log(myLinkedList.head());
 console.log("toString:", myLinkedList.toString(), "\nsize:", myLinkedList.size());
 
 console.log(myLinkedList.head().getNodeValue(), myLinkedList.head().getNextNode().getNodeValue(), myLinkedList.head().getNextNode().getNextNode().getNodeValue());
+
+console.log(myLinkedList.contains("test5"), myLinkedList.contains("test0"), myLinkedList.contains("test4"), myLinkedList.contains("tessttt"));
