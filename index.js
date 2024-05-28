@@ -94,7 +94,15 @@ const linkedList = () => {
     }
 
     const find = (value) => {
-        
+        let nextNode = head();
+        for (let i = 0; i < size(); i++) {
+            if (value === nextNode.getNodeValue()) {
+                return nextNode;
+                break;
+            }
+            nextNode = nextNode.getNextNode();
+        }
+        return false;
     }
 
     const toString = () => {
@@ -156,3 +164,5 @@ console.log("toString:", myLinkedList.toString(), "\nsize:", myLinkedList.size()
 console.log(myLinkedList.head().getNodeValue(), myLinkedList.head().getNextNode().getNodeValue(), myLinkedList.head().getNextNode().getNextNode().getNodeValue());
 
 console.log(myLinkedList.contains("test5"), myLinkedList.contains("test0"), myLinkedList.contains("test4"), myLinkedList.contains("tessttt"));
+
+console.log(myLinkedList.find("test3").getNodeValue(), myLinkedList.find(983));
