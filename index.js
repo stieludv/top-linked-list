@@ -33,9 +33,9 @@ const linkedList = () => {
 
     const append = (value) => {
         const newNode = linkedListNode(value);
-        const tailNode = tail();
-        if (tailNode !== null) {
-            tailNode.nextNode = newNode;
+        const previousTailNode = tail();
+        if (previousTailNode !== null) {
+            previousTailNode.setNextNode(newNode);
             tailNode = newNode;
             linkedListSize++;
         }
@@ -48,9 +48,10 @@ const linkedList = () => {
 
     const prepend = (value) => {
         const newNode = linkedListNode(value);
-        const headNode = head();
-        if (headNode !== null) {
-            newNode.nextNode = headNode;
+        const previousHeadNode = head();
+        if (previousHeadNode !== null) {
+            newNode.setNextNode(previousHeadNode);
+            headNode = newNode;
             linkedListSize++;
         }
         else {
@@ -89,7 +90,23 @@ const linkedList = () => {
     }
 
     const toString = () => {
-        
+        if (size() > 0) {
+            let nextNode = head();
+            let linkedListString = `${nextNode.getNodeValue()} => `;
+    
+            for (let i = 2; i < size(); i++) {
+                nextNode = nextNode.getNextNode();
+                linkedListString = linkedListString + nextNode.getNodeValue() + " => ";
+            }
+    
+            nextNode = nextNode.getNextNode();
+            linkedListString = linkedListString + nextNode.getNodeValue();
+    
+            return linkedListString;
+        }
+        else {
+            return "List is empty";
+        }
     }
 
     const insertAt = (index) => {
@@ -118,4 +135,11 @@ const linkedList = () => {
 
 const myLinkedList = linkedList();
 
+myLinkedList.append("test");
+myLinkedList.append("test2");
+myLinkedList.prepend("test3");
+console.log(myLinkedList);
 console.log(myLinkedList.head());
+console.log("toString:", myLinkedList.toString(), "\nsize:", myLinkedList.size());
+
+console.log(myLinkedList.head().getNodeValue(), myLinkedList.head().getNextNode().getNodeValue(), myLinkedList.head().getNextNode().getNextNode().getNodeValue());
